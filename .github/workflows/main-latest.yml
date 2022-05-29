@@ -1,4 +1,4 @@
-name: main-latest
+name: "Make shallow bundles"
 
 on:
   workflow_dispatch:
