@@ -9,10 +9,12 @@ on:
 
 jobs:
 
+  
   git-trees:
 
     if: ${{ github.repository_owner == 'Armbian' }}
     runs-on: ubuntu-latest
+    name: "GIT tree"
     steps:
 
       - name: Checkout
@@ -29,6 +31,7 @@ jobs:
 
       - name: Prepare git trees, bulk of work
         run: |
+          mkdir -p /tmp/workdir/kernel/output/
           echo "1234" > /tmp/workdir/kernel/output/test.gitbundle
 #          BASE_WORK_DIR="/tmp/workdir" bash shallow_kernel_tree.sh
 
