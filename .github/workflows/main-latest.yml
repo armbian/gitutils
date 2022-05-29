@@ -10,14 +10,18 @@ on:
 jobs:
 
   git-trees:
+
+    if: ${{ github.repository_owner == 'Armbian' }}
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Cache git worktree
         uses: actions/cache@v2
         with:
+        
           path: /tmp/workdir/kernel/worktree
           key: ${{ runner.os }}-kernel-worktree-${{ github.sha }}
           restore-keys: |
@@ -25,7 +29,15 @@ jobs:
 
       - name: Prepare git trees, bulk of work
         run: |
-          BASE_WORK_DIR="/tmp/workdir" bash shallow_kernel_tree.sh
+          echo "1234" > /tmp/workdir/kernel/output/test.gitbundle
+#          BASE_WORK_DIR="/tmp/workdir" bash shallow_kernel_tree.sh
+
+      - name: Install SSH key for storage
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY_TORRENTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
+          if_key_exists: replace
 
       - name: "GH latest release"
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -39,3 +51,8 @@ jobs:
             /tmp/workdir/kernel/output/*.gitbundle
             /tmp/workdir/kernel/output/*.git.tar
 
+      - name: Deploy to server
+        run: |
+          ls -l /tmp/workdir/kernel/output/
+          sudo apt-get -y -qq install lftp
+          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms /tmp/workdir/kernel/output/ images/ ;bye" sftp://users.armbian.com
