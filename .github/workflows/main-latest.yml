@@ -32,8 +32,7 @@ jobs:
       - name: Prepare git trees, bulk of work
         run: |
           mkdir -p /tmp/workdir/kernel/output/
-          echo "1234" > /tmp/workdir/kernel/output/test.gitbundle
-#          BASE_WORK_DIR="/tmp/workdir" bash shallow_kernel_tree.sh
+          BASE_WORK_DIR="/tmp/workdir" bash shallow_kernel_tree.sh
 
       - name: Install SSH key for storage
         uses: shimataro/ssh-key-action@v2
