@@ -58,4 +58,4 @@ jobs:
         run: |
           ls -l /tmp/workdir/kernel/output/
           sudo apt-get -y -qq install lftp
-          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms /tmp/workdir/kernel/output/ images/ ;bye" sftp://users.armbian.com
+          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms /tmp/workdir/kernel/output/ gitbundle/ ;bye" sftp://users.armbian.com
