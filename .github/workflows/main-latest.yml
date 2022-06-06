@@ -46,11 +46,20 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Latest Linux kernel shallow git trees"
+          title: "Linux shallow git trees"
           files: |
             /tmp/workdir/kernel/output/*.gitshallow
             /tmp/workdir/kernel/output/*.gitbundle
             /tmp/workdir/kernel/output/*.git.tar
+
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: latest
+          body: "<p align='center'><a href='https://www.armbian.com'><img src='https://raw.githubusercontent.com/armbian/.github/master/profile/tux-two.png' width='400' height='226' alt='Armbian Linux'></a></p>"
+          files:  /tmp/workdir/kernel/worktree/LICENSE
 
       - name: Deploy to server
         run: |
