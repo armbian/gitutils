@@ -5,7 +5,7 @@
   <strong>armbian shallow kernel bundles production</strong><br>
 </p>
 
-[![Make shallow bundles](https://github.com/armbian/gitutils/workflows/main-latest/badge.svg)](https://github.com/armbian/gitutils/actions/workflows/main-latest.yml)
+[![Make shallow bundles](https://github.com/armbian/gitutils/actions/workflows/main-latest.yml/badge.svg)](https://github.com/armbian/gitutils/actions/workflows/main-latest.yml)
 
 # Preface
 
