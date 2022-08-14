@@ -2,10 +2,16 @@
   <a href="#build-framework">
   <img src="https://raw.githubusercontent.com/armbian/build/master/.github/armbian-logo.png" alt="Armbian logo" width="144">
   </a><br>
-  <strong>armbian shallow kernel bundles production</strong><br>
-</p>
+  <strong>Armbian Linux Kernel Caching</strong><br>
+<br>
+<a href=https://github.com/armbian/gitutils/actions/workflows/main-latest.yml><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/armbian/gitutils/Make%20shallow%20bundles?logo=linux&label=Make%20shallow%20bundles&style=for-the-badge"></a>
+ <br>
 
-[![Make shallow bundles](https://github.com/armbian/gitutils/actions/workflows/main-latest.yml/badge.svg)](https://github.com/armbian/gitutils/actions/workflows/main-latest.yml)
+<br>
+<a href=https://twitter.com/armbian><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/armbian?logo=twitter&style=flat-square"></a>
+<a href=http://discord.armbian.com/><img alt="Discord" src="https://img.shields.io/discord/854735915313659944?label=Discord&logo=discord&style=flat-square"></a>
+<a href=https://liberapay.com/armbian><img alt="Liberapay patrons" src="https://img.shields.io/liberapay/patrons/armbian?logo=liberapay&style=flat-square"></a>
+</p>
 
 # Preface
 
