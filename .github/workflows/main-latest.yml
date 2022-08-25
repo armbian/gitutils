@@ -66,3 +66,20 @@ jobs:
           ls -l /tmp/workdir/kernel/output/
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms /tmp/workdir/kernel/output/ gitbundles/ ;bye" sftp://users.armbian.com
+
+  sync-servers:
+    permissions:
+      contents: none
+    name: "Sync servers"
+    needs: [git-trees]
+    if: ${{ success() && github.repository_owner == 'Armbian' }}
+    uses: armbian/scripts/.github/workflows/sync-servers.yml@master
+
+    with:
+      KEY_ID: 'upload'
+
+    secrets:
+      KEY_UPLOAD: ${{ secrets.KEY_UPLOAD }}
+      USER_REPOSITORY: ${{ secrets.USER_REPOSITORY }}
+      HOST_REPOSITORY: ${{ secrets.HOST_REPOSITORY }}
+      KNOWN_HOSTS_REPOSITORY: ${{ secrets.KNOWN_HOSTS_REPOSITORY }}
