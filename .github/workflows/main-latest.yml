@@ -9,11 +9,26 @@ on:
 
 jobs:
 
+  fake:
+    if: ${{ github.repository_owner == 'Armbian' }}
+    runs-on: ubuntu-latest
+    name: Generate control artefact
+    steps:
+
+      - run: |
+          echo "not empty" > changes
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: changes
+          name: changes
+          if-no-files-found: ignore
   
   git-trees:
 
     if: ${{ github.repository_owner == 'Armbian' }}
     runs-on: ubuntu-latest
+    needs: [ fake ]
     name: "GIT tree"
     steps:
 
@@ -66,3 +81,19 @@ jobs:
           ls -l /tmp/workdir/kernel/output/
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms /tmp/workdir/kernel/output/ gitbundles/ ;bye" sftp://users.armbian.com
+
+  sync-servers:
+    permissions:
+      contents: none
+    name: "Sync servers"
+    needs: [git-trees]
+    uses: armbian/scripts/.github/workflows/sync-servers.yml@master
+
+    with:
+      KEY_ID: 'upload'
+
+    secrets:
+      KEY_UPLOAD: ${{ secrets.KEY_UPLOAD }}
+      USER_REPOSITORY: ${{ secrets.USER_REPOSITORY }}
+      HOST_REPOSITORY: ${{ secrets.HOST_REPOSITORY }}
+      KNOWN_HOSTS_REPOSITORY: ${{ secrets.KNOWN_HOSTS_REPOSITORY }}
