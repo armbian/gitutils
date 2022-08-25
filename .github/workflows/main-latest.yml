@@ -9,11 +9,26 @@ on:
 
 jobs:
 
+  fake:
+    if: ${{ github.repository_owner == 'Armbian' }}
+    runs-on: ubuntu-latest
+    name: Generate control artefact
+    steps:
+
+      - run: |
+          echo "not empty" > changes
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: changes
+          name: changes
+          if-no-files-found: ignore
   
   git-trees:
 
     if: ${{ github.repository_owner == 'Armbian' }}
     runs-on: ubuntu-latest
+    needs: [ fake ]
     name: "GIT tree"
     steps:
 
