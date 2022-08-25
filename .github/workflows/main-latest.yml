@@ -72,7 +72,6 @@ jobs:
       contents: none
     name: "Sync servers"
     needs: [git-trees]
-    if: ${{ success() && github.repository_owner == 'Armbian' }}
     uses: armbian/scripts/.github/workflows/sync-servers.yml@master
 
     with:
