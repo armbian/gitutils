@@ -4,7 +4,7 @@
   </a><br>
   <strong>Armbian Linux Kernel Caching</strong><br>
 <br>
-<a href=https://github.com/armbian/gitutils/actions/workflows/main-latest.yml><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/armbian/gitutils/Make%20shallow%20bundles?logo=linux&label=Make%20shallow%20bundles&style=for-the-badge"></a>
+<a href=https://github.com/armbian/gitutils/actions/workflows/main-latest.yml><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/armbian/gitutils/main-latest.yml?logo=linux&label=Make%20shallow%20bundles&style=for-the-badge&branch=main"></a>
  <br>
 
 <br>
